@@ -7,5 +7,3 @@ The site serves as a professional portfolio to showcase my background in **Econo
 - React + Vite
 - Netlify (deployment)
 - Supabase (planned, for backend services)
-
-## 📂 Structure
