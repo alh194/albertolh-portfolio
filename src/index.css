@@ -1,0 +1,109 @@
+/* ---------- index.css (reemplazo completo) ---------- */
+
+/* Reset mínimo */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+img, svg, video, canvas, audio, iframe { display: block; max-width: 100%; height: auto; }
+input, button, textarea, select { font: inherit; }
+
+/* Variables y esquema de color */
+:root {
+  --bg: #ffffff;
+  --text: #0f172a;
+  --muted: #334155;
+  --link: #1d4ed8;
+  --link-hover: #1e40af;
+  --surface: #f8fafc;
+  --border: #e5e7eb;
+
+  color-scheme: light dark;
+}
+
+/* Modo oscuro (automático por preferencia del SO) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b1220;
+    --text: #e6e8ee;
+    --muted: #a6b0c3;
+    --link: #8ab4ff;
+    --link-hover: #a8c5ff;
+    --surface: #111827;
+    --border: #1f2937;
+  }
+}
+
+/* Layout base */
+html, body, #root { width: 100%; min-height: 100%; }
+html { text-size-adjust: 100%; }
+body {
+  margin: 0;
+  display: block;           /* ← evita centrar todo el sitio como hacía el template */
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+#root {
+  display: flex;            /* layout vertical */
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Tipografía base */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  font-weight: 800;
+  color: var(--text);
+  margin-block: 0.6em;
+}
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.6rem; }
+p { margin-block: 0.75em; }
+ul, ol { padding-left: 1.2rem; margin-block: 0.75em; }
+
+/* Enlaces */
+a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 500;
+}
+a:hover { color: var(--link-hover); text-decoration: underline; }
+a:focus-visible {
+  outline: 3px solid #94a3b8;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Botones */
+button {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: background .2s, border-color .2s;
+}
+button:hover { background: rgba(0,0,0,.06); }
+@media (prefers-color-scheme: dark) {
+  button:hover { background: rgba(255,255,255,.06); }
+}
+button:focus-visible { outline: 3px solid #94a3b8; outline-offset: 2px; }
+
+/* Contenedor típico de página (no afecta al header) */
+main.page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* Selección de texto */
+::selection { background: #c7d2fe; color: #111827; }
+@media (prefers-color-scheme: dark) {
+  ::selection { background: #334155; color: #e5e7eb; }
+}

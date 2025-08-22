@@ -1,0 +1,127 @@
+:root{
+  --bg: #ffffff;
+  --line: #e5e7eb;
+  --text: #0f172a;
+  --muted: #334155;
+  --hover: rgba(0,0,0,.06);
+}
+
+/* ---------- CONTENEDOR GENERAL ---------- */
+.ll-header{
+  position: sticky; top:0; z-index:50;
+  width:100%;
+  background: var(--bg);
+  border-bottom:1px solid var(--line);
+}
+
+/* ---------- TOPBAR (marca, búsqueda, idioma, burger) ---------- */
+.ll-topbar{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:10px 16px; box-sizing:border-box; width:100%;
+}
+
+.ll-brand{
+  font-weight:800; text-decoration:none; color:var(--text); font-size:18px;
+}
+
+.ll-actions{ display:flex; align-items:center; gap:8px; }
+.ll-search{
+  border:1px solid var(--line); background:#f8fafc;
+  padding:6px 10px; border-radius:8px; font:600 12px/1 system-ui;
+}
+.ll-lang{
+  display:flex; border:1px solid var(--line); border-radius:8px; overflow:hidden;
+}
+.ll-lang button{
+  padding:6px 10px; background:#fff; border:0; font-weight:600; color:var(--muted);
+}
+.ll-lang button.active{ background:var(--hover); color:var(--text); }
+
+/* ---------- BURGER (solo móvil) ---------- */
+.ll-burger{
+  display:none; flex-direction:column; gap:4px; background:transparent; border:0; padding:6px;
+}
+.ll-burger span{ width:20px; height:2px; background:#0f172a; display:block; }
+
+/* ---------- NAV DESKTOP ---------- */
+.ll-nav{
+  width:100%;
+  border-top:1px solid var(--line);
+}
+
+/* Fila: ocupa el 100% y reparte items en columnas iguales */
+.ll-row{
+  display:flex; align-items:center;
+  width:100%;
+  padding:0 12px;
+  gap:0;                 /* sin huecos extra entre columnas */
+  list-style:none; margin:0;
+}
+
+/* Cada item ocupa la misma fracción del ancho */
+.ll-row > li{
+  position:relative;     /* para el submenu */
+  flex: 1 1 0;           /* columnas iguales */
+  display:flex;          /* para centrar el contenido dentro */
+  justify-content:center;
+}
+
+/* Extremos: pegados a bordes */
+.ll-row > li:first-child{ justify-content:flex-start; }
+.ll-row > li:last-child{ justify-content:flex-end; }
+
+/* Enlaces y triggers centrados dentro de su columna */
+.ll-item > a,
+.ll-trigger{
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:10px 12px; border-radius:8px; text-decoration:none;
+  color:var(--muted); font-weight:600; background:transparent; border:0; cursor:pointer;
+  width: max-content;   /* el botón no se estira, queda centrado */
+}
+.ll-item > a:hover, .ll-trigger:hover{ background:var(--hover); color:var(--text); }
+
+/* ---------- SUBMENÚS (desktop) ---------- */
+.ll-has-sub{ position:relative; }
+.ll-submenu{
+  position:absolute;
+  left:50%; transform:translateX(-50%);     /* centrado bajo la columna */
+  top:calc(100% + 6px);
+  display:none; min-width:240px;
+  background:#fff; border:1px solid var(--line);
+  border-radius:12px; padding:8px; box-shadow:0 8px 24px rgba(0,0,0,.08);
+}
+.ll-has-sub:hover .ll-submenu,
+.ll-has-sub:focus-within .ll-submenu{
+  display:grid; grid-template-columns:1fr; gap:4px;
+}
+.ll-submenu a{
+  padding:10px 10px; border-radius:8px; color:var(--muted); text-decoration:none; font-weight:600;
+}
+.ll-submenu a:hover{ background:var(--hover); color:var(--text); }
+
+/* ---------- NAV MÓVIL (cajón) ---------- */
+.ll-drawer{
+  display:block;
+  position:fixed; inset:56px 0 auto 0; /* bajo la topbar */
+  background:#fff; border-bottom:1px solid var(--line);
+  transform: translateY(-120%); transition: transform .25s ease;
+  box-shadow:0 12px 24px rgba(0,0,0,.06);
+}
+.ll-drawer.open{ transform: translateY(0); }
+.ll-drawer ul{ list-style:none; margin:0; padding:8px 12px; }
+.ll-drawer a{ display:block; padding:10px 8px; border-radius:8px; color:var(--muted); text-decoration:none; font-weight:600; }
+.ll-drawer a:hover{ background:var(--hover); color:var(--text); }
+.ll-drawer details{ padding:6px 0; }
+.ll-drawer summary{ list-style:none; cursor:pointer; padding:10px 8px; border-radius:8px; font-weight:700; color:var(--text); }
+.ll-drawer summary:hover{ background:var(--hover); }
+.ll-drawer .ll-drawer-group{ display:flex; flex-direction:column; padding-left:8px; }
+
+/* ---------- BREAKPOINTS ---------- */
+@media (min-width: 960px){
+  .ll-burger{ display:none; }
+  .ll-nav{ display:block; }
+  .ll-drawer{ display:none; }
+}
+@media (max-width: 959.98px){
+  .ll-burger{ display:flex; }
+}
